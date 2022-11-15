@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="LOG_PATH" value="../log"/>
+    <property name="BASE_FILENAME" value="mapstruct"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] [%-5level] [%logger{36}] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+<!--    <appender name="STDOUT-TEEFILTER" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder>-->
+<!--            <pattern>%fullRequest%n%n%fullResponse</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
+
+    <appender name="SAVE-TO-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${BASE_FILENAME}.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern> %d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] [%-5level] [%logger{36}.%M] - %msg%n </Pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern> ${LOG_PATH}/archived/${BASE_FILENAME}/%d{MMyyyy,aux}/${BASE_FILENAME}_%d{dd-MM-yyyy}_%i.log.gz </fileNamePattern>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+            <maxHistory>90</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>5MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="FILE-TEEFILTER" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_PATH}/${BASE_FILENAME}-access.log</file>
+        <encoder>
+<!--            <pattern>logging uri: %requestURL | status code: %statusCode | bytes: %bytesSent | elapsed time: %elapsedTime | request-log: %magenta(%requestContent) | response-log: %cyan(%responseContent)</pattern>-->
+            <pattern>%fullRequest%n%n%fullResponse</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="CORE_APP_LOG" level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE-TEEFILTER"/>
+        <appender-ref ref="SAVE-TO-FILE"/>
+    </logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="SAVE-TO-FILE"/>
+    </root>
+</configuration>

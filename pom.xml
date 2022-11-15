@@ -93,9 +93,17 @@
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
 		</dependency>
+
+		<!-- logback lib-->
+		<dependency>
+			<groupId>dev.akkinoc.spring.boot</groupId>
+			<artifactId>logback-access-spring-boot-starter</artifactId>
+			<version>3.4.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -127,15 +135,6 @@
 					</annotationProcessorPaths>
 					<showWarnings>true</showWarnings>
 					<compilerArgs>
-						<arg>
-							-Amapstruct.suppressGeneratorTimestamp=true
-						</arg>
-						<arg>
-							-Amapstruct.suppressGeneratorVersionInfoComment=true
-						</arg>
-						<arg>
-							-Amapstruct.verbose=true
-						</arg>
 						<compilerArg>
 							-Amapstruct.defaultComponentModel=spring
 						</compilerArg>
@@ -144,5 +143,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
