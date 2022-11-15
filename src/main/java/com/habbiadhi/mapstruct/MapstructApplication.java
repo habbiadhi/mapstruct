@@ -1,13 +1,16 @@
 package com.habbiadhi.mapstruct;
 
-import ch.qos.logback.access.servlet.TeeFilter;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.trace.http.HttpTrace;
+import org.springframework.boot.actuate.trace.http.HttpTraceRepository;
+import org.springframework.boot.actuate.trace.http.InMemoryHttpTraceRepository;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootApplication
 public class MapstructApplication {
@@ -17,17 +20,21 @@ public class MapstructApplication {
 	}
 
 	@Bean
-	public FilterRegistrationBean requestResponseFilter() {
+	public HttpTraceRepository httpTraceRepository() {
+		return new InMemoryHttpTraceRepository() {
+			ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
+			Logger logger = LoggerFactory.getLogger(InMemoryHttpTraceRepository.class);
 
-		final FilterRegistrationBean filterRegBean = new FilterRegistrationBean();
-		List<String> urlPattern = new ArrayList<>();
-		urlPattern.add("/path");
-
-		TeeFilter filter = new TeeFilter();
-		filterRegBean.setFilter(filter);
-		filterRegBean.setUrlPatterns(urlPattern);
-		filterRegBean.setName("Request Response Filter");
-		filterRegBean.setAsyncSupported(Boolean.TRUE);
-		return filterRegBean;
+			@Override
+			public void add(HttpTrace trace) {
+				try {
+					logger.warn(objectMapper.writeValueAsString(trace));
+				} catch (JsonProcessingException e) {
+					logger.error(e.getMessage(), e);
+				}
+				super.add(trace);
+			}
+		};
 	}
+
 }

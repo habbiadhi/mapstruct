@@ -48,9 +48,9 @@ public class Controller {
 
     @GetMapping(value="test")
     public List<PersonDto> getTest(Person person)  {
-//        System.out.print(person.getName());
-//        System.out.print(person.getBloodGroup());
-//        System.out.print(person.getBirthDate());
+        System.out.print(person.getName());
+        System.out.print(person.getBloodGroup());
+        System.out.print(person.getBirthDate());
         return new ArrayList<>();
     }
 }
