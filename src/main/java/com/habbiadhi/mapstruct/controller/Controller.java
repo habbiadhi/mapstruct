@@ -3,6 +3,7 @@ package com.habbiadhi.mapstruct.controller;
 import com.habbiadhi.mapstruct.service.impl.FakerPersonServiceImpl;
 import com.habbiadhi.mapstruct.model.entity.Person;
 import com.habbiadhi.mapstruct.model.request.PersonDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(Controller.PATH)
+@Slf4j
 public class Controller {
 
     final static String PATH = "path";
@@ -27,7 +29,6 @@ public class Controller {
 
     @GetMapping(value=PERSON)
     public Person getPerson() throws ParseException {
-        // TODO check response use http code
         return personService.getPerson();
     }
 
@@ -51,6 +52,7 @@ public class Controller {
 //        System.out.print(person.getName());
 //        System.out.print(person.getBloodGroup());
 //        System.out.print(person.getBirthDate());
+        log.info("TEST");
         return new ArrayList<>();
     }
 }
