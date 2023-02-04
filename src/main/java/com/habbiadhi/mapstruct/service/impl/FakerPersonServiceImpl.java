@@ -19,17 +19,19 @@ public class FakerPersonServiceImpl implements PersonService {
 
     private final Faker faker = new Faker();
 
-    @Autowired
-    private PersonMapper personMapper;
+//    @Autowired
+//    private PersonMapper personMapper;
 
     private Util util = Util.getInstance();
 
     public PersonDto getPersonDto() throws ParseException {
-        return personMapper.personToPersonDto(getPerson());
+//        return personMapper.personToPersonDto(getPerson());
+        return new PersonDto();
     }
 
     public List<PersonDto> getPersonDtos() throws ParseException {
-        return personMapper.personsToPersonDtos(getPersons());
+        return new ArrayList<>();
+//        return personMapper.personsToPersonDtos(getPersons());
     }
 
     public Person getPerson() throws ParseException {

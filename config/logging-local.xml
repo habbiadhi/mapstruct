@@ -31,13 +31,13 @@
         </rollingPolicy>
     </appender>
 
-    <appender name="FILE-TEEFILTER" class="ch.qos.logback.core.FileAppender">
+<!--    <appender name="FILE-TEEFILTER" class="ch.qos.logback.core.FileAppender">
         <file>${LOG_PATH}/${BASE_FILENAME}-access.log</file>
         <encoder>
-<!--            <pattern>logging uri: %requestURL | status code: %statusCode | bytes: %bytesSent | elapsed time: %elapsedTime | request-log: %magenta(%requestContent) | response-log: %cyan(%responseContent)</pattern>-->
+&lt;!&ndash;            <pattern>logging uri: %requestURL | status code: %statusCode | bytes: %bytesSent | elapsed time: %elapsedTime | request-log: %magenta(%requestContent) | response-log: %cyan(%responseContent)</pattern>&ndash;&gt;
             <pattern>%fullRequest%n%n%fullResponse</pattern>
         </encoder>
-    </appender>
+    </appender>-->
 
     <logger name="CORE_APP_LOG" level="INFO">
         <appender-ref ref="STDOUT"/>
