@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(Controller.PATH)
-@Slf4j
+//@Slf4j
 public class Controller {
 
     final static String PATH = "path";
@@ -52,7 +52,7 @@ public class Controller {
 //        System.out.print(person.getName());
 //        System.out.print(person.getBloodGroup());
 //        System.out.print(person.getBirthDate());
-        log.info("TEST");
+//        log.info("TEST");
         return new ArrayList<>();
     }
 }
