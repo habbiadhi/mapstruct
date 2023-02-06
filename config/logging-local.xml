@@ -3,11 +3,11 @@
     <property name="LOG_PATH" value="../log"/>
     <property name="BASE_FILENAME" value="mapstruct"/>
 
-<!--    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
-<!--        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">-->
-<!--            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] [%-5level] [%logger{36}] - %msg%n</pattern>-->
-<!--        </encoder>-->
-<!--    </appender>-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%thread] [%-5level] [%logger{36}] - %msg%n</pattern>
+        </encoder>
+    </appender>
 
 <!--    <appender name="STDOUT-TEEFILTER" class="ch.qos.logback.core.ConsoleAppender">-->
 <!--        <encoder>-->
@@ -39,14 +39,14 @@
         </encoder>
     </appender>-->
 
-    <logger name="CORE_APP_LOG" level="INFO">
-        <appender-ref ref="STDOUT"/>
-        <appender-ref ref="FILE-TEEFILTER"/>
-        <appender-ref ref="SAVE-TO-FILE"/>
-    </logger>
+<!--    <logger name="CORE_APP_LOG" level="INFO">-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--        <appender-ref ref="FILE-TEEFILTER"/>-->
+<!--        <appender-ref ref="SAVE-TO-FILE"/>-->
+<!--    </logger>-->
 
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
-        <appender-ref ref="SAVE-TO-FILE"/>
+<!--        <appender-ref ref="SAVE-TO-FILE"/>-->
     </root>
 </configuration>
