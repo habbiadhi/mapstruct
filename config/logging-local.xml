@@ -34,19 +34,13 @@
     <appender name="FILE-TEEFILTER" class="ch.qos.logback.core.FileAppender">
         <file>${LOG_PATH}/${BASE_FILENAME}-access.log</file>
         <encoder>
-<!--            <pattern>logging uri: %requestURL | status code: %statusCode | bytes: %bytesSent | elapsed time: %elapsedTime | request-log: %magenta(%requestContent) | response-log: %cyan(%responseContent)</pattern>-->
             <pattern>%fullRequest%n%n%fullResponse</pattern>
         </encoder>
     </appender>
 
-    <logger name="CORE_APP_LOG" level="INFO">
-        <appender-ref ref="STDOUT"/>
-        <appender-ref ref="FILE-TEEFILTER"/>
-        <appender-ref ref="SAVE-TO-FILE"/>
-    </logger>
-
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE-TEEFILTER"/>
         <appender-ref ref="SAVE-TO-FILE"/>
     </root>
 </configuration>
