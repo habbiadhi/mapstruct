@@ -26,7 +26,7 @@ public class MapstructApplicationTests {
     private FakerPersonServiceImpl faker = new FakerPersonServiceImpl();
 
     @Test
-    void whenCallingSayHello_thenReturnHello() throws ParseException, ParseException {
+    void whenCallingSayHello_thenReturnHello() throws ParseException {
         assertTrue("popo".equals(faker.getConstantPersonDto().getName()));
     }
 
