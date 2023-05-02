@@ -15,8 +15,6 @@ public class MapstructApplication {
 
 	@Bean
 	public FilterRegistrationBean requestResponseFilter() {
-		final FilterRegistrationBean filterRegBean = new FilterRegistrationBean(new TeeFilter());
-		filterRegBean.setName();
-		return filterRegBean;
+		return new FilterRegistrationBean(new TeeFilter());
 	}
 }

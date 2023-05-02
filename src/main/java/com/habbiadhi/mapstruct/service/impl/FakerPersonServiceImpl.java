@@ -24,6 +24,12 @@ public class FakerPersonServiceImpl implements PersonService {
 
     private Util util = Util.getInstance();
 
+    public PersonDto getConstantPersonDto() throws ParseException {
+        return PersonDto.builder()
+                .name("popo")
+                .build();
+    }
+
     public PersonDto getPersonDto() throws ParseException {
         return personMapper.personToPersonDto(getPerson());
 //        return new PersonDto();
